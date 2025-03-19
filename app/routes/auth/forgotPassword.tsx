@@ -23,26 +23,24 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
-export const action = async ({
-  request,
-}: Route.ActionArgs): Promise<Response> => {
+export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email");
 
+  if (!email) {
+    return { error: "Email is missing" };
+  }
+
   // TODO: Implement password reset logic
   // Change what the users see after resetting their password
-  return new Response("Password reset email sent", { status: 200 });
+  return { message: "Password reset email sent" };
 };
 
 const ForgotPassword = ({ actionData }: Route.ComponentProps) => {
   return (
     <div>
       <h1>Reset Password</h1>
-      {actionData ? (
-        <>
-          <p>Password reset email sent.</p>
-        </>
-      ) : (
+      {!actionData && (
         <>
           <p>Enter your email address to reset your password.</p>
           <form method="post">
@@ -52,6 +50,8 @@ const ForgotPassword = ({ actionData }: Route.ComponentProps) => {
           </form>
         </>
       )}
+      {actionData && actionData.message && <p>{actionData.message}</p>}
+      {actionData && actionData.error && <p>{actionData.error}</p>}
     </div>
   );
 };
