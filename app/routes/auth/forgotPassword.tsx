@@ -1,6 +1,5 @@
-import { type MetaFunction } from "react-router";
-import { redirect } from "react-router";
-import type { Route } from ".react-router/types/app/routes/auth/+types/forgotPassword.ts";
+import { type MetaFunction, redirect } from "react-router";
+import type { Route } from "./+types/forgotPassword.ts";
 import { getToken } from "~/utils/auth/session";
 
 /**
