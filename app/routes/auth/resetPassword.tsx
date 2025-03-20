@@ -1,5 +1,6 @@
 import { Form, redirect } from "react-router";
 import type { Route } from "./+types/resetPassword";
+import { passwordCheck } from "~/utils/auth/password";
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const { token } = params;
@@ -10,7 +11,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const token = formData.get("token");
-  const password = formData.get("password");
+  const password = formData.get("password") as string;
   const confirmPassword = formData.get("confirmPassword");
 
   if (!token) {
@@ -23,6 +24,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   if (!confirmPassword) {
     return { error: "Confirm password is missing" };
+  }
+
+  const validity = passwordCheck(password);
+
+  if (!validity.isValid) {
+    return { error: validity.error };
   }
 
   if (password !== confirmPassword) {

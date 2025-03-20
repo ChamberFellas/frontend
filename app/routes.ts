@@ -16,6 +16,13 @@ export default [
   route("reset-password/:token", "routes/auth/resetPassword.tsx"),
 
   layout("routes/auth/protectedLayout.tsx", [
-    route("dashboard", "routes/dashboard.tsx"),
+    route("dashboard", "routes/protected/dashboard.tsx"),
+    route("account", "routes/protected/account.tsx"),
+    route("settings", "routes/protected/settings.tsx"),
+
+    layout("routes/protected/services/serviceLayout.tsx", [
+      route("chores", "routes/protected/services/chores.tsx"),
+      route("bills", "routes/protected/services/bills.tsx"),
+    ]),
   ]),
 ] satisfies RouteConfig;

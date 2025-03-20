@@ -5,6 +5,7 @@ import handleRegister from "~/utils/auth/register";
 import { useLocation } from "react-router";
 import { Form } from "react-router";
 import { Link } from "react-router";
+import { passwordCheck } from "~/utils/auth/password";
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -32,6 +33,13 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const redirectUrl = formData.get("redirectTo") as string | "/dashboard";
 
   try {
+    const validity = passwordCheck(password);
+    if (!validity.isValid) {
+      return {
+        error: validity.error,
+      };
+    }
+
     const token = await handleRegister({
       email,
       name,
