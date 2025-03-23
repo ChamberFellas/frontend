@@ -1,10 +1,8 @@
-import { redirect } from "react-router";
+import { Form, Link } from "react-router";
 import type { Route } from "./+types/register";
-import { createSession, getToken } from "~/utils/auth/session";
+import { createSession } from "~/utils/auth/session";
 import handleRegister from "~/utils/auth/register";
 import { useLocation } from "react-router";
-import { Form } from "react-router";
-import { Link } from "react-router";
 import { passwordCheck } from "~/utils/auth/password";
 
 export const meta = ({}: Route.MetaArgs) => {
@@ -14,23 +12,15 @@ export const meta = ({}: Route.MetaArgs) => {
   ];
 };
 
-export const loader = async ({ request }: Route.LoaderArgs) => {
-  const token = await getToken(request);
-  if (token) {
-    return redirect("/dashboard");
-  }
-  return null;
-};
-
 export const action = async ({ request }: Route.ActionArgs) => {
   let response: Response;
 
   const formData = await request.formData();
-  const email = formData.get("email") as string | "";
-  const name = formData.get("name") as string | "";
-  const password = formData.get("password") as string | "";
-  const repeatPassword = formData.get("repeatPassword") as string | "";
-  const redirectUrl = formData.get("redirectTo") as string | "/dashboard";
+  const email = String(formData.get("email")) || "";
+  const name = String(formData.get("name")) || "";
+  const password = String(formData.get("password")) || "";
+  const repeatPassword = String(formData.get("repeatPassword")) || "";
+  const redirectUrl = String(formData.get("redirectTo")) || "/dashboard";
 
   try {
     const validity = passwordCheck(password);

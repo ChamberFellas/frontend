@@ -1,6 +1,5 @@
-import { type MetaFunction, redirect } from "react-router";
+import { type MetaFunction } from "react-router";
 import type { Route } from "./+types/forgotPassword.js";
-import { getToken } from "~/utils/auth/session";
 
 /**
  * Defines metadata for the logout route.
@@ -13,14 +12,6 @@ export const meta: MetaFunction = () => {
     { title: "Reset Password" },
     { name: "description", content: "Reset your password." },
   ];
-};
-
-export const loader = async ({ request }: Route.LoaderArgs) => {
-  const token = await getToken(request);
-  if (token) {
-    return redirect("/dashboard");
-  }
-  return null;
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
