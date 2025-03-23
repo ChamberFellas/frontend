@@ -36,6 +36,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
  * @returns Redirect response to the login page.
  * @see     https://reactrouter.com/en/dev/route/loader
  */
-export async function loader({ request }: Route.LoaderArgs) {
+export const loader = () => {
   return redirect("/login");
-}
+};

@@ -1,7 +1,7 @@
-import { useLocation, Form, redirect } from "react-router";
+import { useLocation, Form } from "react-router";
 import type { Route } from "./+types/login";
 import handleLogin from "~/utils/auth/login";
-import { createSession, getToken } from "~/utils/auth/session";
+import { createSession } from "~/utils/auth/session";
 import { Link } from "react-router";
 
 export const meta = ({}: Route.MetaArgs) => {
@@ -42,18 +42,11 @@ export const action = async ({ request }: Route.ActionArgs) => {
   throw response;
 };
 
-export const loader = async ({ request }: Route.LoaderArgs) => {
-  const token = await getToken(request);
-  if (token) {
-    return redirect("/dashboard");
-  }
-  return null;
-};
-
 const LoginPage = ({ actionData }: Route.ComponentProps) => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const from = params.get("from") || "/";
+  console.log(from);
 
   return (
     <>
