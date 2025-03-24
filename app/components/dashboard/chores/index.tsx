@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import type { CompleteChore, IncompleteChore } from "~/types/chores";
 import IncompleteChoreComponent from "./incompleteChore";
 import CompleteChoreComponent from "./completeChore";
-import { Link } from "react-router";
+import "./chores.scss";
 
 interface ChoresProps {
   current: IncompleteChore[];
@@ -49,7 +50,7 @@ const Chores = ({ current, previous }: ChoresProps) => {
   };
 
   return (
-    <>
+    <div className="chores-container">
       <Link to="/chores">Chores</Link>
       <div>
         {incompleteChores.map((chore) => (
@@ -60,7 +61,7 @@ const Chores = ({ current, previous }: ChoresProps) => {
           />
         ))}
       </div>
-      <br></br>
+      <span className="break" />
       <div>
         {completedChores.map((chore) => (
           <CompleteChoreComponent
@@ -70,7 +71,7 @@ const Chores = ({ current, previous }: ChoresProps) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

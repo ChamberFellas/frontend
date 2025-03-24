@@ -2,6 +2,7 @@ import { redirect, Outlet } from "react-router";
 import type { Route } from "./+types/protectedLayout";
 import Navbar from "~/components/navbar";
 import { getToken } from "~/utils/auth/session";
+import { useLocation } from "react-router";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   // Check if the user is already logged in
@@ -14,12 +15,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 };
 
 const ProtectedLayout = () => {
-  return (
-    <div>
-      <Navbar />
-      <Outlet />
-    </div>
-  );
+  return <Outlet />;
 };
 
 export default ProtectedLayout;
