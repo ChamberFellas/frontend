@@ -1,3 +1,4 @@
+import Navbar from "~/components/navbar";
 import type { Route } from "./+types/account";
 
 export const meta = ({}: Route.MetaArgs) => {
@@ -10,7 +11,7 @@ export const meta = ({}: Route.MetaArgs) => {
 const Account = () => {
   return (
     <div>
-      <h1>Account</h1>
+      <Navbar leftIcon="BURGER" rightIcon="DASHBOARD" title="Account" />
       <p>Manage your account</p>
     </div>
   );

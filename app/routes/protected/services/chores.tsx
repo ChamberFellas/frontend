@@ -1,3 +1,4 @@
+import Navbar from "~/components/navbar";
 import type { Route } from "./+types/chores";
 
 export const meta = ({}: Route.MetaArgs) => {
@@ -10,7 +11,7 @@ export const meta = ({}: Route.MetaArgs) => {
 const Chores = () => {
   return (
     <div>
-      <h1>Chores</h1>
+      <Navbar leftIcon="BURGER" rightIcon="DASHBOARD" title="Chores" />
       <p>View and manage your chores.</p>
     </div>
   );

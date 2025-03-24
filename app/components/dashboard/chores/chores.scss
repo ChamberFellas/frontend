@@ -1,0 +1,26 @@
+.chores-container {
+  display: flex;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 5px;
+  max-height: 15rem;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+// Span component as a line accross
+.break {
+  display: block;
+  border: 1px solid black;
+  color: black;
+}
+
+.chore-container {
+  display: flex;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 5px;
+}

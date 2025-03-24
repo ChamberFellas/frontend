@@ -1,3 +1,4 @@
+import Navbar from "~/components/navbar";
 import type { Route } from "./+types/bills";
 
 export const meta = ({}: Route.MetaArgs) => {
@@ -10,6 +11,7 @@ export const meta = ({}: Route.MetaArgs) => {
 const Bills = () => {
   return (
     <div>
+      <Navbar title="Bills" leftIcon="BACK" rightIcon="ACCOUNT" />
       <h1>Bills</h1>
       <p>View and manage your bills.</p>
     </div>

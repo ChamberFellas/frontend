@@ -2,6 +2,7 @@ import { mockdata } from "~/mockdata";
 import type { Route } from "./+types/dashboard";
 import Chores from "~/components/dashboard/chores";
 import Bills from "~/components/dashboard/bills";
+import Navbar from "~/components/navbar";
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -19,7 +20,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 const Dashboard = ({ loaderData }: Route.ComponentProps) => {
   return (
     <>
-      <h1>Welcome to your dashboard</h1>
+      <Navbar leftIcon="BURGER" rightIcon="ACCOUNT" title="Dashboard" />
       <Chores
         current={loaderData.incomplete_chores}
         previous={loaderData.complete_chores}
