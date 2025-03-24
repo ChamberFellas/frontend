@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 import Welcome from "../pages/welcome";
 import { getToken } from "~/utils/auth/session";
 
-export const meta = ({}: Route.MetaArgs) => {
+export const meta = () => {
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },
@@ -16,8 +16,8 @@ export const loader = async ({
   return !!token;
 };
 
-const Home = ({ loaderData }: Route.ComponentProps) => {
-  return <Welcome isLoggedIn={loaderData} />;
+const Home = () => {
+  return <Welcome />;
 };
 
 export default Home;
