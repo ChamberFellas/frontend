@@ -1,5 +1,6 @@
 import type { IncompleteChore } from "~/types/chores";
 import { dateFormatter } from "~/utils/date";
+import { TiTickOutline } from "react-icons/ti";
 
 interface IncompleteChoreProps {
   chore: IncompleteChore;
@@ -17,10 +18,13 @@ const IncompleteChoreComponent = ({
     <div className="chore-container">
       <p>{chore.name}</p>
 
-      <p>{chore.user}</p>
-      <p>{time_left > 0 ? `${dateFormatter(time_left)} left` : "Overdue"}</p>
-
-      <button onClick={() => markComplete(chore.id)}>Complete</button>
+      <div className="added-details-container">
+        <p>{chore.user}</p>
+        <p>{time_left > 0 ? `${dateFormatter(time_left)} left` : "Overdue"}</p>
+        <button onClick={() => markComplete(chore.id)}>
+          <TiTickOutline />
+        </button>
+      </div>
     </div>
   );
 };

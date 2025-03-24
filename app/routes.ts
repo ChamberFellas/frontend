@@ -24,6 +24,7 @@ export default [
     route("dashboard", "routes/protected/dashboard.tsx"),
     route("account", "routes/protected/account.tsx"),
     route("settings", "routes/protected/settings.tsx"),
+    route("house", "routes/protected/house.tsx"),
 
     layout("routes/protected/services/serviceLayout.tsx", [
       route("chores", "routes/protected/services/chores.tsx"),
