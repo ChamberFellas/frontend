@@ -4,6 +4,7 @@ import { mockdata } from "~/mockdata";
 import { useState } from "react";
 import Chores from "~/components/dashboard/chores";
 
+
 export const meta = ({}: Route.MetaArgs) => {
   return [
     { title: "Chores" },
@@ -33,6 +34,7 @@ const ChorePage = ({ loaderData }: Route.ComponentProps) => {
         incompleteChores={incompleteChores}
         completedChores={completedChores}
       />
+
     </div>
   );
 };

@@ -21,6 +21,7 @@ const Chores = ({
     initialIncompleteChores
   );
 
+
   const markComplete = async (id: string) => {
     const chore = incompleteChores.find((chore) => chore.id === id);
 
