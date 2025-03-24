@@ -6,9 +6,11 @@ interface PaidBillProps {
 
 const PaidBillComponent = ({ bill }: PaidBillProps) => {
   return (
-    <div>
-      <h3>{bill.name}</h3>
-      <p>{bill.amount}</p>
+    <div className="bill-container">
+      <p>{bill.name}</p>
+      <div className="added-details-container">
+        <p>£{bill.amount}</p>
+      </div>
     </div>
   );
 };

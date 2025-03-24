@@ -21,7 +21,6 @@ const Chores = ({
     initialIncompleteChores
   );
 
-
   const markComplete = async (id: string) => {
     const chore = incompleteChores.find((chore) => chore.id === id);
 
@@ -31,7 +30,7 @@ const Chores = ({
       id: chore.id,
       name: chore.name,
       description: chore.description,
-      user: chore.user,
+      user: "Bob",
       flagged: false,
       completedDate: new Date(),
     };
@@ -58,7 +57,7 @@ const Chores = ({
   return (
     <div className="chores-container">
       <Link to="/chores">Chores</Link>
-      <div>
+      <div className="chores-list">
         {incompleteChores.map((chore) => (
           <IncompleteChoreComponent
             key={chore.id}
@@ -68,7 +67,7 @@ const Chores = ({
         ))}
       </div>
       <span className="break" />
-      <div>
+      <div className="chores-list">
         {completedChores.map((chore) => (
           <CompleteChoreComponent
             key={chore.id}

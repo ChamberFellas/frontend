@@ -1,4 +1,6 @@
+import { FaRegMoneyBillAlt } from "react-icons/fa";
 import type { Bill } from "~/types/bills";
+import { dateFormatter } from "~/utils/date";
 
 interface UnpaidBillProps {
   bill: Bill;
@@ -6,13 +8,21 @@ interface UnpaidBillProps {
 }
 
 const UnpaidBillComponent = ({ bill, markPaid }: UnpaidBillProps) => {
-  return (
-    <div>
-      <h3>{bill.name}</h3>
-      <p>{bill.amount}</p>
-      <p>{bill.dueDate.toString()}</p>
+  const diff = bill.dueDate.valueOf() - Date.now();
 
-      <button onClick={() => markPaid(bill.id)}>Mark Paid</button>
+  return (
+    <div className="bill-container">
+      <p>{bill.name}</p>
+
+      <div className="added-details-container">
+        <p>£{bill.amount}</p>
+        <p>{dateFormatter(diff)}</p>
+
+        <span className="divider" />
+        <button onClick={() => markPaid(bill.id)}>
+          <FaRegMoneyBillAlt />
+        </button>
+      </div>
     </div>
   );
 };
