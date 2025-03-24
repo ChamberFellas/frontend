@@ -52,10 +52,6 @@ const LoginPage = ({ actionData }: Route.ComponentProps) => {
   return (
     <div className="login-container">
       <h1 className="login-heading">Login</h1>
-      <div className="login-links">
-        <Link to="/register" className="login-link">Register</Link>
-        <Link to="/forgot-password" className="login-link">Forgot Password</Link>
-      </div>
       <Form method="post" className="login-form">
         <input type="hidden" name="redirectTo" value={from} />
         <div className="login-input-container">
@@ -67,6 +63,10 @@ const LoginPage = ({ actionData }: Route.ComponentProps) => {
           <input id="password" name="password" type="password" className="login-input" />
         </div>
         <button type="submit" className="login-button">Login</button>
+        <div className="login-links">
+        <Link to="/register" className="login-link">Register</Link>
+        <Link to="/forgot-password" className="login-link">Forgot Password</Link>
+      </div>
         {actionData && actionData.error && (
           <p className="error">{actionData.error}</p>
         )}

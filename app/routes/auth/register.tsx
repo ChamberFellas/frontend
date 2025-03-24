@@ -1,3 +1,4 @@
+import "./../../styles/register-style.scss"; // Import the SCSS file
 import { Form, Link } from "react-router";
 import type { Route } from "./+types/register";
 import { createSession } from "~/utils/auth/session";
@@ -65,7 +66,8 @@ const RegisterPage = ({ actionData }: Route.ComponentProps) => {
   const redirectTo = params.get("redirectTo") || "/dashboard";
 
   return (
-    <>
+    <div className="register-container">
+      <h1>Register Account</h1>
       <Link to="/login">Already have an account?</Link>
       <Form method="post">
         <input type="hidden" name="redirectTo" value={redirectTo} />
@@ -90,7 +92,7 @@ const RegisterPage = ({ actionData }: Route.ComponentProps) => {
           <div className="error">{actionData.error}</div>
         )}
       </Form>
-    </>
+    </div>
   );
 };
 
