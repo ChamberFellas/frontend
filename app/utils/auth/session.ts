@@ -80,7 +80,7 @@ export const createSession = async ({
 }) => {
   const session = await getSession(request);
   session.set(TOKEN_SESSION_KEY, token);
-  return redirect(redirectUrl || "/", {
+  return redirect(redirectUrl || "/dashboard", {
     headers: {
       "Set-Cookie": await sessionStorage.commitSession(session, {
         httpOnly: true,

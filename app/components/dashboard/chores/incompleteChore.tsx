@@ -19,8 +19,8 @@ const IncompleteChoreComponent = ({
       <p>{chore.name}</p>
 
       <div className="added-details-container">
-        <p>{chore.user}</p>
         <p>{time_left > 0 ? `${dateFormatter(time_left)} left` : "Overdue"}</p>
+        <span className="divider" />
         <button onClick={() => markComplete(chore.id)}>
           <TiTickOutline />
         </button>

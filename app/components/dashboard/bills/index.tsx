@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { CompleteChore, IncompleteChore } from "~/types/chores";
 import { Link } from "react-router";
 import type { Bill } from "~/types/bills";
 import PaidBillComponent from "./paidBill";
 import UnpaidBillComponent from "./unpaidBill";
+import "./bills.scss";
 
 interface BillsProps {
   bills: Bill[];
@@ -27,9 +27,9 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
   };
 
   return (
-    <>
+    <div className="bills-container">
       <Link to="/bills">Bills</Link>
-      <div>
+      <div className="bills-list">
         {bills
           .filter((bill) => !bill.paid)
           .map((bill) => (
@@ -41,14 +41,14 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
           ))}
       </div>
       <br></br>
-      <div>
+      <div className="bills-list">
         {bills
           .filter((bill) => bill.paid)
           .map((bill) => (
             <PaidBillComponent key={bill.id} bill={bill} />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 
