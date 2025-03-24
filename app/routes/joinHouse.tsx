@@ -29,6 +29,7 @@ const JoinHousePage = ({ loaderData }: Route.ComponentProps) => {
   return (
     <div className="join-house-container">
       <h1>Join The House?</h1>
+      <img src={welcomeImage} alt="Welcome" className="welcome-image" />
       <p>Felix has invited you to a House!</p>
       {loaderData.token ? (
         <div className="button-container">
@@ -40,9 +41,7 @@ const JoinHousePage = ({ loaderData }: Route.ComponentProps) => {
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
         </div>
- )}
-      <img src={welcomeImage} alt="Welcome" className="welcome-image" />
-
+      )}
     </div>
   );
 };
