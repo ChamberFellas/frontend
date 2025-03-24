@@ -18,7 +18,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email") as string | "";
   const password = formData.get("password") as string | "";
-  const redirectUrl = formData.get("redirectTo") as string | "/dashboard";
+  const redirectUrl = "/dashboard";
 
   // Sign in and redirect to the proper destination if successful.
   try {
@@ -60,13 +60,24 @@ const LoginPage = ({ actionData }: Route.ComponentProps) => {
         </div>
         <div className="login-input-container">
           <label htmlFor="password">Password:</label>
-          <input id="password" name="password" type="password" className="login-input" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            className="login-input"
+          />
         </div>
-        <button type="submit" className="login-button">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
         <div className="login-links">
-        <Link to="/register" className="login-link">Register</Link>
-        <Link to="/forgot-password" className="login-link">Forgot Password</Link>
-      </div>
+          <Link to="/register" className="login-link">
+            Register
+          </Link>
+          <Link to="/forgot-password" className="login-link">
+            Forgot Password
+          </Link>
+        </div>
         {actionData && actionData.error && (
           <p className="error">{actionData.error}</p>
         )}
@@ -74,6 +85,5 @@ const LoginPage = ({ actionData }: Route.ComponentProps) => {
     </div>
   );
 };
-
 
 export default LoginPage;

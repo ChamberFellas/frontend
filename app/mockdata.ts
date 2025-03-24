@@ -6,14 +6,12 @@ const incomplete_chores: IncompleteChore[] = [
     id: "1",
     name: "Clean kitchen",
     description: "Thorougly clean the kitchen",
-    user: "Bob",
     dueDate: new Date("2025-03-30"),
   },
   {
     id: "2",
     name: "Wash dishes",
     description: "Wash all the dishes",
-    user: "Alice",
     dueDate: new Date("2025-03-31"),
   },
 ];
@@ -40,12 +38,14 @@ const complete_chores: CompleteChore[] = [
 const bills: Bill[] = [
   {
     id: "1",
+    name: "Rent",
     amount: 100,
     dueDate: new Date("2025-03-30"),
     paid: true,
   },
   {
     id: "2",
+    name: "Utilities",
     amount: 200,
     dueDate: new Date("2025-04-02"),
     paid: false,

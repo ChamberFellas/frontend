@@ -3,7 +3,6 @@ export interface IncompleteChore {
   name: string;
   description: string;
   dueDate: Date;
-  user: string;
 }
 
 export interface CompleteChore {
