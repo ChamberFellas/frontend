@@ -1,6 +1,8 @@
 import { getToken } from "~/utils/auth/session";
 import type { Route } from "./+types/joinHouse";
 import { Link } from "react-router";
+import welcomeImage from "./../assets/welcomeImage.jpg"; // Import the image
+import "../styles/joinHouse-style.scss"; // Correct the SCSS file path
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -25,17 +27,22 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
 
 const JoinHousePage = ({ loaderData }: Route.ComponentProps) => {
   return (
-    <div>
-      <h1>Join House</h1>
-      <p>Join a house you're invited to</p>
+    <div className="join-house-container">
+      <h1>Join The House?</h1>
+      <p>Felix has invited you to a House!</p>
       {loaderData.token ? (
-        <></>
+        <div className="button-container">
+          <button className="accept-button">Accept</button>
+          <button className="reject-button">Reject</button>
+        </div>
       ) : (
-        <>
+        <div className="auth-links">
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
-        </>
-      )}
+        </div>
+ )}
+      <img src={welcomeImage} alt="Welcome" className="welcome-image" />
+
     </div>
   );
 };
