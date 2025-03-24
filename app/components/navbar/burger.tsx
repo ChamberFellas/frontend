@@ -32,6 +32,9 @@ export const BurgerMenu = () => {
           <Link to="/account">Account</Link>
         </li>
         <li>
+          <Link to="/house">House</Link>
+        </li>
+        <li>
           <Link to="/settings">Settings</Link>
         </li>
       </ul>

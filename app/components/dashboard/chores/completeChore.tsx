@@ -1,3 +1,5 @@
+import { CiFlag1 } from "react-icons/ci";
+import { FaFlag } from "react-icons/fa";
 import type { CompleteChore } from "~/types/chores";
 import { dateFormatter } from "~/utils/date";
 
@@ -13,9 +15,13 @@ const CompleteChoreComponent = ({ chore, flagChore }: CompleteChoreProps) => {
     <div className="chore-container">
       <p>{chore.name}</p>
 
-      <p>{chore.user}</p>
-      <p>{dateFormatter(timeCompletedAgo)} ago</p>
-      <button onClick={() => flagChore(chore.id)}>Flag</button>
+      <div className="added-details-container">
+        <p>{chore.user}</p>
+        <p>{dateFormatter(timeCompletedAgo)} ago</p>
+        <button onClick={() => flagChore(chore.id)}>
+          {chore.flagged ? <CiFlag1 /> : <FaFlag />}
+        </button>
+      </div>
     </div>
   );
 };
