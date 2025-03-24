@@ -22,8 +22,8 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
     <>
       <Navbar leftIcon="BURGER" rightIcon="ACCOUNT" title="Dashboard" />
       <Chores
-        current={loaderData.incomplete_chores}
-        previous={loaderData.complete_chores}
+        incompleteChores={loaderData.incomplete_chores}
+        completedChores={loaderData.complete_chores}
       />
       <Bills bills={loaderData.bills} />
     </>
