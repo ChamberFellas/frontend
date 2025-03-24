@@ -3,6 +3,7 @@ import type { Route } from "./+types/login";
 import handleLogin from "~/utils/auth/login";
 import { createSession } from "~/utils/auth/session";
 import { Link } from "react-router";
+import "../../styles/login-style.scss"; // Correctly reference the SCSS file
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -49,24 +50,30 @@ const LoginPage = ({ actionData }: Route.ComponentProps) => {
   console.log(from);
 
   return (
-    <>
-      <Link to="/register">Register</Link>
-      <Link to="/forgot-password">Forgot Password</Link>
-      <Form method="post">
+    <div className="login-container">
+      <h1 className="login-heading">Login</h1>
+      <div className="login-links">
+        <Link to="/register" className="login-link">Register</Link>
+        <Link to="/forgot-password" className="login-link">Forgot Password</Link>
+      </div>
+      <Form method="post" className="login-form">
         <input type="hidden" name="redirectTo" value={from} />
-        <label>
-          Email: <input name="email" />
-        </label>
-        <label>
-          Password: <input name="password" type="password" />
-        </label>
-        <button type="submit">Login</button>
+        <div className="login-input-container">
+          <label htmlFor="email">Email:</label>
+          <input id="email" name="email" className="login-input" />
+        </div>
+        <div className="login-input-container">
+          <label htmlFor="password">Password:</label>
+          <input id="password" name="password" type="password" className="login-input" />
+        </div>
+        <button type="submit" className="login-button">Login</button>
         {actionData && actionData.error && (
           <p className="error">{actionData.error}</p>
         )}
       </Form>
-    </>
+    </div>
   );
 };
+
 
 export default LoginPage;
