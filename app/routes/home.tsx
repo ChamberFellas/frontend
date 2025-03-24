@@ -17,7 +17,7 @@ export const loader = async ({
 };
 
 const Home = ({ loaderData }: Route.ComponentProps) => {
-  return <Welcome isLoggedIn={loaderData} />;
+  // return <Welcome isLoggedIn={loaderData} />;
 };
 
 export default Home;
