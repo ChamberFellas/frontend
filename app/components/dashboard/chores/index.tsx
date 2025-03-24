@@ -6,15 +6,20 @@ import CompleteChoreComponent from "./completeChore";
 import "./chores.scss";
 
 interface ChoresProps {
-  current: IncompleteChore[];
-  previous: CompleteChore[];
+  incompleteChores: IncompleteChore[];
+  completedChores: CompleteChore[];
 }
 
-const Chores = ({ current, previous }: ChoresProps) => {
-  const [completedChores, setCompletedChores] =
-    useState<CompleteChore[]>(previous);
-  const [incompleteChores, setIncompleteChores] =
-    useState<IncompleteChore[]>(current);
+const Chores = ({
+  incompleteChores: initialIncompleteChores,
+  completedChores: initialCompletedChores,
+}: ChoresProps) => {
+  const [completedChores, setCompletedChores] = useState<CompleteChore[]>(
+    initialCompletedChores
+  );
+  const [incompleteChores, setIncompleteChores] = useState<IncompleteChore[]>(
+    initialIncompleteChores
+  );
 
   const markComplete = async (id: string) => {
     const chore = incompleteChores.find((chore) => chore.id === id);
