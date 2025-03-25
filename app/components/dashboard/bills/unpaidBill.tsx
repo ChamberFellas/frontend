@@ -8,15 +8,17 @@ interface UnpaidBillProps {
 }
 
 const UnpaidBillComponent = ({ bill, markPaid }: UnpaidBillProps) => {
-  const diff = bill.dueDate.valueOf() - Date.now();
+  const diff = (bill.dueDate.valueOf() - Date.now()) / 1000;
 
   return (
     <div className="bill-container">
       <p>{bill.name}</p>
 
       <div className="added-details-container">
-        <p>£{bill.amount}</p>
-        <p>{dateFormatter(diff)}</p>
+        <p>
+          £{bill.amount} to {bill.recipient}
+        </p>
+        <p> - {dateFormatter(diff)}</p>
 
         <span className="divider" />
         <button onClick={() => markPaid(bill.id)}>

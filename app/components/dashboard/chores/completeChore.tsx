@@ -19,9 +19,13 @@ const CompleteChoreComponent = ({ chore, flagChore }: CompleteChoreProps) => {
         <p>{chore.user}</p>
         <p> - {dateFormatter(timeCompletedAgo)} ago</p>
         <span className="divider" />
-        <button onClick={() => flagChore(chore.id)}>
-          {chore.flagged ? <CiFlag1 /> : <FaFlag />}
-        </button>
+        {chore.user === "Me" ? (
+          <button></button>
+        ) : (
+          <button onClick={() => flagChore(chore.id)}>
+            {chore.flagged ? <CiFlag1 /> : <FaFlag />}
+          </button>
+        )}
       </div>
     </div>
   );
