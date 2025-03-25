@@ -4,4 +4,5 @@ export interface Bill {
   amount: number;
   dueDate: Date;
   paid: boolean;
+  recipient: string;
 }

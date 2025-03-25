@@ -9,6 +9,7 @@
 
   overflow-y: scroll;
   scrollbar-width: none;
+  margin-bottom: 2rem;
 }
 
 .chores-list {
@@ -26,6 +27,32 @@
   color: black;
 }
 
+.chores-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid black;
+
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
 .chore-container {
   display: flex;
   height: 2.25rem;
@@ -36,8 +63,16 @@
   padding-inline: 0.25rem;
 
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0;
     width: 2rem;
+
+    svg {
+      height: 1.3rem;
+      width: 1.3rem;
+    }
   }
 
   * {

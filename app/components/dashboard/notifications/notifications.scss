@@ -1,0 +1,17 @@
+.notifications-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 0rem 1rem;
+  border-radius: 5px;
+  max-height: 15rem;
+  margin-bottom: 2rem;
+
+  font-size: 1.25rem;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

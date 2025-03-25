@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { IoMdAdd } from "react-icons/io";
 import type { Bill } from "~/types/bills";
 import PaidBillComponent from "./paidBill";
 import UnpaidBillComponent from "./unpaidBill";
@@ -28,7 +29,12 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
 
   return (
     <div className="bills-container">
-      <Link to="/bills">Bills</Link>
+      <div className="bills-header">
+        <Link to="/bills">Bills</Link>
+        <button className="add-button">
+          <IoMdAdd />
+        </button>
+      </div>
       <div className="bills-list">
         {bills
           .filter((bill) => !bill.paid)
@@ -40,7 +46,7 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
             />
           ))}
       </div>
-      <br></br>
+      <span className="break" />
       <div className="bills-list">
         {bills
           .filter((bill) => bill.paid)

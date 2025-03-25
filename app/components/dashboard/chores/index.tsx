@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { IoMdAdd } from "react-icons/io";
 import type { CompleteChore, IncompleteChore } from "~/types/chores";
 import IncompleteChoreComponent from "./incompleteChore";
 import CompleteChoreComponent from "./completeChore";
+
 import "./chores.scss";
 
 interface ChoresProps {
@@ -30,7 +32,7 @@ const Chores = ({
       id: chore.id,
       name: chore.name,
       description: chore.description,
-      user: "Bob",
+      user: "Me",
       flagged: false,
       completedDate: new Date(),
     };
@@ -56,7 +58,12 @@ const Chores = ({
 
   return (
     <div className="chores-container">
-      <Link to="/chores">Chores</Link>
+      <div className="chores-header">
+        <Link to="/chores">Chores</Link>
+        <button className="add-button">
+          <IoMdAdd />
+        </button>
+      </div>
       <div className="chores-list">
         {incompleteChores.map((chore) => (
           <IncompleteChoreComponent

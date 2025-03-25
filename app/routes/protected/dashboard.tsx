@@ -3,6 +3,7 @@ import type { Route } from "./+types/dashboard";
 import Chores from "~/components/dashboard/chores";
 import Bills from "~/components/dashboard/bills";
 import Navbar from "~/components/navbar";
+import Notifications from "~/components/dashboard/notifications";
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -21,6 +22,7 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
   return (
     <>
       <Navbar leftIcon="BURGER" rightIcon="ACCOUNT" title="Dashboard" />
+      <Notifications />
       <Chores
         incompleteChores={loaderData.incomplete_chores}
         completedChores={loaderData.complete_chores}

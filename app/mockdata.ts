@@ -42,13 +42,15 @@ const bills: Bill[] = [
     amount: 100,
     dueDate: new Date("2025-03-30"),
     paid: true,
+    recipient: "John",
   },
   {
     id: "2",
     name: "Utilities",
     amount: 200,
-    dueDate: new Date("2025-04-02"),
+    dueDate: new Date("2025-04-10"),
     paid: false,
+    recipient: "Jane",
   },
 ];
 
