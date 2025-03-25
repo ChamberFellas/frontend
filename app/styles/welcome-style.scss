@@ -1,0 +1,89 @@
+html, body {
+    overflow: hidden; 
+    height: 100%;
+    margin: 0;
+  }
+  
+  .welcome-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .welcome-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the start */
+  }
+  
+  .welcome-heading {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .welcome-body {
+    font-size: 2rem;
+    color: #666;
+  }
+  
+  .welcome-image {
+    max-width: 45%;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 20px; /* Add some space between the text and the image */
+  }
+  
+  .chores-main, .bills-main {
+    width: 90%; /* Increase the width */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: white;
+    min-height: 200px; /* Set a minimum height to make the sections longer */
+  }
+  
+  .chores-main {
+    background-color: rgb(146, 186, 221);
+  }
+  
+  .bills-main {
+    background-color: grey;
+  }
+  
+  .chores-heading, .bills-heading {
+    font-size: 1.4rem; /* Make the titles a bit smaller */
+  }
+  
+  .chores-body, .bills-body {
+    font-size: 1.1rem; /* Adjust the text size */
+  }
+  
+  /* Responsive styles for mobile devices */
+  @media (max-width: 768px) {
+    .welcome-main {
+      text-align: center;
+      align-items: center; /* Center items horizontally */
+    }
+  
+    .welcome-content {
+      align-items: center; /* Center content horizontally */
+    }
+  
+    .welcome-image {
+      max-width: 80%;
+      margin-left: 0;
+    }
+  
+    .chores-main, .bills-main {
+      width: 90%; /* Full width on mobile devices */
+      align-items: center;
+      min-height: 210px; /* Increase the minimum height on mobile devices */
+    }
+  }

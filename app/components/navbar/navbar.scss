@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.burger-menu {
+  position: fixed;
+  padding-top: 10px;
+  margin-left: 10px;
+  z-index: 10;
+}
+
+// Burger is made out of 3 span objects
+.burger {
+  // This is the div which contains the span
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  span {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 3px 0;
+  }
+}
+
+.burger:hover {
+  background-color: #555;
+}
