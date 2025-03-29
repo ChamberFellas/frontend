@@ -36,11 +36,12 @@ const AddChorePage = () => {
   };
 
   const handleCancel = () => {
-    navigate("/chores"); // Navigate back to the Chores screen
+    navigate("/chores"); // Navigate back to the Chores Home Page
   };
 
   return (
     <div className="add-chore-container">
+      {/* Add a cross button in the top-right corner */}
       <button className="close-button" onClick={handleCancel}>
         &times;
       </button>
