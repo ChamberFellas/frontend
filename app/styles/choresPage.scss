@@ -8,6 +8,25 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       min-height: 500px;
+      position: relative;
+  
+      .add-chore-icon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: #007bff;
+        cursor: pointer;
+        transition: transform 0.2s, color 0.2s;
+  
+        &:hover {
+          color: #0056b3;
+          transform: scale(1.1);
+        }
+  
+        &:focus {
+          outline: none;
+        }
+      }
   
       .chores-list {
         margin-top: 1.5rem;
@@ -82,20 +101,6 @@
             }
           }
         }
-      }
-    }
-  
-    .add-chore-icon {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      color: #007bff;
-      cursor: pointer;
-      transition: transform 0.2s, color 0.2s;
-  
-      &:hover {
-        color: #0056b3;
-        transform: scale(1.1);
       }
     }
   }

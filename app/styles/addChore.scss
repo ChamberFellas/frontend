@@ -1,80 +1,91 @@
 .add-chore-container {
-    position: relative;
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-    .close-button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: #333;
-      cursor: pointer;
-      transition: color 0.2s, transform 0.2s;
-  
-      &:hover {
-        color: #ff0000;
-        transform: scale(1.1);
-      }
-  
+  position: relative;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+
+    &:hover {
+      color: #ff0000;
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    label {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%; /* Ensure all fields take up the full width of the container */
+      max-width: 100%; /* Prevent overflow */
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box; /* Ensure padding is included in the width */
+
       &:focus {
         outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
       }
     }
-  
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: #333;
+
+    select {
+      appearance: none; /* Remove default dropdown styling for consistency */
+      background-color: #fff; /* Ensure consistent background color */
     }
-  
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-  
-      label {
-        font-size: 1rem;
-        font-weight: bold;
-        color: #555;
-      }
-  
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-  
-        &:focus {
-          outline: none;
-          border-color: #007bff;
-          box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-        }
-      }
-  
-      button[type="submit"] {
-        background-color: #007bff;
-        color: white;
-        padding: 0.75rem;
-        font-size: 1rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #0056b3;
-        }
+
+    textarea {
+      resize: vertical; /* Allow vertical resizing only */
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
       }
     }
   }
+}

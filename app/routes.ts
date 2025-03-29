@@ -28,9 +28,9 @@ export default [
 
     layout("routes/protected/services/serviceLayout.tsx", [
       route("chores", "routes/protected/services/chores.tsx"),
-      route("chores/add", "routes/protected/services/addChore.tsx"), // Add this line
+      route("chores/add", "routes/protected/services/addChore.tsx"),
       route("bills", "routes/protected/services/bills.tsx"),
+      route("bills/add", "routes/protected/services/addBills.tsx"), // Add this line
     ]),
-
   ]),
 ] satisfies RouteConfig;

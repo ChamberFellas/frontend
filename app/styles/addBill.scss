@@ -50,17 +50,28 @@
       input,
       select,
       textarea {
-        width: 100%;
+        width: 100%; /* Ensure all fields take up the full width of the container */
+        max-width: 100%; /* Prevent overflow */
         padding: 0.5rem;
         font-size: 1rem;
         border: 1px solid #ddd;
         border-radius: 4px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
   
         &:focus {
           outline: none;
           border-color: #007bff;
           box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
         }
+      }
+  
+      select {
+        appearance: none; /* Remove default dropdown styling for consistency */
+        background-color: #fff; /* Ensure consistent background color */
+      }
+  
+      textarea {
+        resize: vertical; /* Allow vertical resizing only */
       }
   
       button[type="submit"] {
