@@ -5,29 +5,60 @@ nav {
   align-items: center;
 }
 
-.burger-menu {
-  position: fixed;
-  padding-top: 10px;
-  margin-left: 10px;
-  z-index: 10;
-}
-
-// Burger is made out of 3 span objects
-.burger {
-  // This is the div which contains the span
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  span {
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 3px 0;
-  }
-}
 
 .burger:hover {
   background-color: #555;
+}
+.burger {
+  position: fixed;
+  top: 0; /* Align with the top of the application */
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 0.25rem;
+    background-color: #333; /* Solid color for the burger lines */
+    border-radius: 5px;
+  }
+}
+
+.burger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 175px;
+  height: 100%;
+  background-color: #333; /* Solid background color */
+  color: white;
+  z-index: 999;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 1rem 0;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
