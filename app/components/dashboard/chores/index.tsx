@@ -39,9 +39,10 @@ const Chores = ({
         <Link to="/chores" className="chores-header-link">
           Chores
         </Link>
-        <button className="add-button">
+        {/* Wrap the button in a Link to navigate to /chores/add */}
+        <Link to="/chores/add" className="add-button">
           <IoMdAdd />
-        </button>
+        </Link>
       </div>
       <div className="chores-list">
         {incompleteChores.map((chore) => (

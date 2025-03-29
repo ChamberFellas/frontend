@@ -26,11 +26,14 @@ export default [
     route("settings", "routes/protected/settings.tsx"),
     route("house", "routes/protected/house.tsx"),
 
+
     layout("routes/protected/services/serviceLayout.tsx", [
       route("chores", "routes/protected/services/chores.tsx"),
       route("chores/add", "routes/protected/services/addChore.tsx"),
       route("bills", "routes/protected/services/bills.tsx"),
       route("bills/add", "routes/protected/services/addBills.tsx"), // Add this line
+      route("user-settings", "routes/protected/services/userSettings.tsx"), // Add this line
+
     ]),
   ]),
 ] satisfies RouteConfig;
