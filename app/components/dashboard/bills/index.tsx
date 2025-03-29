@@ -14,14 +14,6 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
   const [bills, setBills] = useState(initialBills);
 
   const markPaid = async (id: string): Promise<void> => {
-    // return fetch(`/api/bills/${id}/mark-paid`, {
-    //   method: "POST",
-    // }).then(() => {
-    //   setBills((prevBills) =>
-    //     prevBills.map((bill) => (bill.id === id ? { ...bill, paid: true } : bill))
-    //   );
-    // });
-    //
     setBills((prevBills) =>
       prevBills.map((bill) => (bill.id === id ? { ...bill, paid: true } : bill))
     );
@@ -30,7 +22,10 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
   return (
     <div className="bills-container">
       <div className="bills-header">
-        <Link to="/bills">Bills</Link>
+        {/* Wrap the header in a Link to navigate to /bills */}
+        <Link to="/bills" className="bills-header-link">
+          Bills
+        </Link>
         <button className="add-button">
           <IoMdAdd />
         </button>
