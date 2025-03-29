@@ -7,6 +7,9 @@ const AddBillPage = () => {
   const [amount, setAmount] = useState(""); // Amount field for the bill
   const [dueDate, setDueDate] = useState("");
   const [description, setDescription] = useState("");
+  const [intervalValue, setIntervalValue] = useState(""); // Time interval value
+  const [intervalUnit, setIntervalUnit] = useState("Month(s)"); // Default interval unit
+  const [housemates, setHousemates] = useState<string[]>([]); // Multi-select for housemates
   const navigate = useNavigate();
 
   const handleAddBill = async (e: React.FormEvent) => {
@@ -19,12 +22,19 @@ const AddBillPage = () => {
       amount: parseFloat(amount), // Convert amount to a number
       dueDate: new Date(dueDate),
       description,
+      interval: `${intervalValue} ${intervalUnit}`,
+      housemates,
     };
 
     console.log("New bill added:", newBill);
 
     // Navigate back to the bills page
     navigate("/bills");
+  };
+
+  const handleHousemateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
+    setHousemates(selectedOptions);
   };
 
   const handleCancel = () => {
@@ -70,6 +80,43 @@ const AddBillPage = () => {
             onChange={(e) => setDueDate(e.target.value)}
             required
           />
+        </div>
+        <div>
+          <label htmlFor="intervalValue">How Often Repeats:</label>
+          <input
+            id="intervalValue"
+            type="number"
+            value={intervalValue}
+            onChange={(e) => setIntervalValue(e.target.value)}
+            required
+            min="1" // Ensure only positive integers
+            step="1" // Ensure only whole numbers
+          />
+          <select
+            id="intervalUnit"
+            value={intervalUnit}
+            onChange={(e) => setIntervalUnit(e.target.value)}
+            required
+          >
+            <option value="Day(s)">Day(s)</option>
+            <option value="Week(s)">Week(s)</option>
+            <option value="Month(s)">Month(s)</option>
+            <option value="Year(s)">Year(s)</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="housemates">Housemates Responsible:</label>
+          <select
+            id="housemates"
+            multiple
+            value={housemates}
+            onChange={handleHousemateChange}
+            required
+          >
+            <option value="Alice">Alice</option>
+            <option value="Bob">Bob</option>
+            <option value="Charlie">Charlie</option>
+          </select>
         </div>
         <div>
           <label htmlFor="description">Description (Optional):</label>
