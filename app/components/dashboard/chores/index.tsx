@@ -58,12 +58,12 @@ const Chores = ({
 
   return (
     <div className="chores-container">
-      <div className="chores-header">
-        <Link to="/chores">Chores</Link>
-        <button className="add-button">
-          <IoMdAdd />
-        </button>
-      </div>
+    <div className="chores-header">
+      <Link to="/chores">Chores</Link>
+      <Link to="/chores/add" className="add-button">
+        <IoMdAdd />
+      </Link>
+    </div>
       <div className="chores-list">
         {incompleteChores.map((chore) => (
           <IncompleteChoreComponent
