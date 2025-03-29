@@ -43,13 +43,13 @@ const Chores = ({
 
   const flagChore = async (id: string) => {
     const chore = completedChores.find((chore) => chore.id === id);
-
+  
     if (!chore) return;
-
+  
     setCompletedChores((prev) =>
       prev.map((chore) => {
         if (chore.id === id) {
-          return { ...chore, flagged: true };
+          return { ...chore, flagged: !chore.flagged }; // Toggle the flagged state
         }
         return chore;
       })
