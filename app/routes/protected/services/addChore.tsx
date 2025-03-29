@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/addChore.scss"; // Correct relative path to the SCSS file
 
-
 const AddChorePage = () => {
   const [name, setName] = useState("");
   const [housemates, setHousemates] = useState<string[]>([]); // Multi-select for housemates
@@ -36,8 +35,15 @@ const AddChorePage = () => {
     setHousemates(selectedOptions);
   };
 
+  const handleCancel = () => {
+    navigate("/chores"); // Navigate back to the Chores screen
+  };
+
   return (
     <div className="add-chore-container">
+      <button className="close-button" onClick={handleCancel}>
+        &times;
+      </button>
       <h1>Add a New Chore</h1>
       <form onSubmit={handleAddChore}>
         <div>
