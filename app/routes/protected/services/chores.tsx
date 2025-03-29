@@ -3,9 +3,10 @@ import type { Route } from "./+types/chores";
 import { mockdata } from "~/mockdata";
 import IncompleteChoreComponent from "~/components/dashboard/chores/incompleteChore";
 import CompleteChoreComponent from "~/components/dashboard/chores/completeChore";
-import { Link } from "react-router"; // Import Link for navigation
-import { IoMdAddCircle } from "react-icons/io"; // Import the plus icon
-import "../../../styles/choresPage.scss"; // Import the new SCSS file
+import { Link } from "react-router";
+import { IoMdAddCircle } from "react-icons/io";
+import "../../../styles/choresPage.scss";
+import { useState } from "react";
 
 export const meta = ({}: Route.MetaArgs) => {
   return [
@@ -22,7 +23,32 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 };
 
 const Chores = ({ loaderData }: Route.ComponentProps) => {
-  const { incompleteChores, completedChores } = loaderData;
+  const [incompleteChores, setIncompleteChores] = useState(loaderData.incompleteChores);
+  const [completedChores, setCompletedChores] = useState(loaderData.completedChores);
+
+  // Function to mark a chore as complete
+  const markComplete = async (id: string) => {
+    const chore = incompleteChores.find((chore) => chore.id === id);
+    if (!chore) return;
+
+    const completedChore = {
+      ...chore,
+      completedDate: new Date(),
+      flagged: false, // Default flagged status
+    };
+
+    setCompletedChores((prev) => [...prev, completedChore]);
+    setIncompleteChores((prev) => prev.filter((chore) => chore.id !== id));
+  };
+
+  // Function to toggle the flagged status of a completed chore
+  const flagChore = async (id: string, flagged: boolean) => {
+    setCompletedChores((prev) =>
+      prev.map((chore) =>
+        chore.id === id ? { ...chore, flagged } : chore
+      )
+    );
+  };
 
   return (
     <div className="chores-page">
@@ -35,14 +61,22 @@ const Chores = ({ loaderData }: Route.ComponentProps) => {
         <div className="chores-list">
           <h2>Incomplete Chores</h2>
           {incompleteChores.map((chore) => (
-            <IncompleteChoreComponent key={chore.id} chore={chore} />
+            <IncompleteChoreComponent
+              key={chore.id}
+              chore={chore}
+              markComplete={markComplete}
+            />
           ))}
         </div>
         <span className="break" />
         <div className="chores-list">
           <h2>Completed Chores</h2>
           {completedChores.map((chore) => (
-            <CompleteChoreComponent key={chore.id} chore={chore} />
+            <CompleteChoreComponent
+              key={chore.id}
+              chore={chore}
+              flagChore={flagChore} // Pass the flagChore function
+            />
           ))}
         </div>
       </div>

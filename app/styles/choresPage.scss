@@ -47,33 +47,55 @@
             display: flex;
             gap: 0.5rem;
   
-            button {
-              padding: 0.5rem 1rem;
-              font-size: 0.9rem;
+            .complete-button {
+              background-color: #28a745;
+              color: white;
               border: none;
               border-radius: 4px;
+              padding: 0.5rem 1rem;
               cursor: pointer;
   
-              &.complete {
-                background-color: #28a745;
-                color: white;
+              &:hover {
+                background-color: #218838;
+              }
+            }
   
-                &:hover {
-                  background-color: #218838;
-                }
+            .flag-button {
+              background-color: #ffc107;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              padding: 0.5rem 1rem;
+              cursor: pointer;
+  
+              &.flagged {
+                background-color: #dc3545;
               }
   
-              &.flag {
-                background-color: #ffc107;
-                color: white;
+              &:hover {
+                background-color: #e0a800;
+              }
   
-                &:hover {
-                  background-color: #e0a800;
-                }
+              &.flagged:hover {
+                background-color: #c82333;
               }
             }
           }
         }
+      }
+    }
+  
+    .add-chore-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #007bff;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+  
+      &:hover {
+        color: #0056b3;
+        transform: scale(1.1);
       }
     }
   }
