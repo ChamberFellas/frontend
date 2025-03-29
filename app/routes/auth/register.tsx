@@ -6,6 +6,22 @@ import handleRegister from "~/utils/auth/register";
 import { useLocation } from "react-router";
 import { passwordCheck } from "~/utils/auth/password";
 
+// Placeholder function to simulate saving user info
+const saveUserInfo = async (userInfo: {
+  email: string;
+  name: string;
+  password: string;
+}): Promise<boolean> => {
+  try {
+    console.log("Saving user info:", userInfo);
+    // Simulate success
+    return true;
+  } catch (error) {
+    console.error("Failed to save user info:", error);
+    return false;
+  }
+};
+
 export const meta = ({}: Route.MetaArgs) => {
   return [
     { title: "Register Account" },
@@ -24,6 +40,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const redirectUrl = String(formData.get("redirectTo")) || "/dashboard";
 
   try {
+    // Validate password
     const validity = passwordCheck(password);
     if (!validity.isValid) {
       return {
@@ -31,6 +48,15 @@ export const action = async ({ request }: Route.ActionArgs) => {
       };
     }
 
+    // Save user info
+    const saveSuccess = await saveUserInfo({ email, name, password });
+    if (!saveSuccess) {
+      return {
+        error: "Failed to save user info",
+      };
+    }
+
+    // Handle registration
     const token = await handleRegister({
       email,
       name,
@@ -44,6 +70,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       };
     }
 
+    // Create session
     response = await createSession({ request, token, redirectUrl });
 
     if (!response) {

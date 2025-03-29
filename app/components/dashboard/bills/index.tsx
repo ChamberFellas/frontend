@@ -26,9 +26,10 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
         <Link to="/bills" className="bills-header-link">
           Bills
         </Link>
-        <button className="add-button">
+        {/* Wrap the button in a Link to navigate to /bills/add */}
+        <Link to="/bills/add" className="add-button">
           <IoMdAdd />
-        </button>
+        </Link>
       </div>
       <div className="bills-list">
         {bills

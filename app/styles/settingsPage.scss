@@ -1,0 +1,29 @@
+.manage-account-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(146, 186, 221);
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+  
+    &:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+  
+    &:active {
+      background-color: #003f7f;
+      transform: scale(0.95);
+    }
+  }
