@@ -30,5 +30,8 @@ export default [
       route("chores", "routes/protected/services/chores.tsx"),
       route("bills", "routes/protected/services/bills.tsx"),
     ]),
+
+    route("choresDashboard", "routes/protected/choresDashboard.tsx"),
+
   ]),
 ] satisfies RouteConfig;
