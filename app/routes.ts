@@ -28,10 +28,10 @@ export default [
 
     layout("routes/protected/services/serviceLayout.tsx", [
       route("chores", "routes/protected/services/chores.tsx"),
+      route("chores/add", "routes/protected/services/addChore.tsx"), // Add this line
       route("bills", "routes/protected/services/bills.tsx"),
     ]),
 
     route("choresDashboard", "routes/protected/choresDashboard.tsx"),
-
   ]),
 ] satisfies RouteConfig;
