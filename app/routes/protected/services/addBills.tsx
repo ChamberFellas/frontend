@@ -91,7 +91,7 @@ const AddBillPage = () => {
             <option value="Weekly">Weekly</option>
             <option value="Biweekly">Biweekly</option>
             <option value="Monthly">Monthly</option>
-            <option value="Yearly">Yearly</option>
+            <option value="None">None</option>
           </select>
         </div>
         <div>

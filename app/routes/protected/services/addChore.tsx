@@ -88,7 +88,7 @@ const AddChorePage = () => {
             <option value="Day(s)">Day(s)</option>
             <option value="Week(s)">Week(s)</option>
             <option value="Month(s)">Month(s)</option>
-            <option value="Year(s)">Year(s)</option>
+            <option value="None">Year(s)</option>
           </select>
         </div>
         <div>
