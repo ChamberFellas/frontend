@@ -21,16 +21,19 @@ interface NavbarProps {
   title?: string;
 }
 
+
 const Navbar = ({
   leftIcon = "BURGER",
   rightIcon = "ACCOUNT",
   title,
 }: NavbarProps) => {
   return (
-    <nav>
+    <nav className="navbar">
       <Icon icon={leftIcon} />
-      {title && <h1>{title}</h1>}
-      <Icon icon={rightIcon} />
+      {title && <h1 className="navbar-title">{title}</h1>}
+      <div className="navbar-right-icon">
+        <Icon icon={rightIcon} />
+      </div>
     </nav>
   );
 };

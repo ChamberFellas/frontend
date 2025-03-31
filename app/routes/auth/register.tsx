@@ -1,10 +1,10 @@
-import "./../../styles/register-style.scss"; // Import the SCSS file
-import { Form, Link } from "react-router";
-import type { Route } from "./+types/register";
-import { createSession } from "~/utils/auth/session";
-import handleRegister from "~/utils/auth/register";
-import { useLocation } from "react-router";
-import { passwordCheck } from "~/utils/auth/password";
+import "./../../styles/register-style.scss"; // Importing the SCSS file for styling
+import { Form, Link } from "react-router"; // Importing Form and Link components from react-router
+import type { Route } from "./+types/register"; // Importing the Route type for TypeScript type checking
+import { createSession } from "~/utils/auth/session"; // Importing a utility function to create a session
+import handleRegister from "~/utils/auth/register"; // Importing a utility function to handle user registration
+import { useLocation } from "react-router"; // Importing useLocation to access the current URL
+import { passwordCheck } from "~/utils/auth/password"; // Importing a utility function to validate passwords
 
 // Placeholder function to simulate saving user info
 const saveUserInfo = async (userInfo: {
@@ -13,50 +13,53 @@ const saveUserInfo = async (userInfo: {
   password: string;
 }): Promise<boolean> => {
   try {
-    console.log("Saving user info:", userInfo);
+    console.log("Saving user info:", userInfo); // Log the user info for debugging
     // Simulate success
     return true;
   } catch (error) {
-    console.error("Failed to save user info:", error);
+    console.error("Failed to save user info:", error); // Log any errors
     return false;
   }
 };
 
+// Metadata for the page (used for SEO and browser tab titles)
 export const meta = ({}: Route.MetaArgs) => {
   return [
-    { title: "Register Account" },
-    { name: "description", content: "User registration page" },
+    { title: "Register Account" }, // Title of the page
+    { name: "description", content: "User registration page" }, // Description of the page
   ];
 };
 
+// Action function to handle form submission
 export const action = async ({ request }: Route.ActionArgs) => {
   let response: Response;
 
+  // Extract form data from the request
   const formData = await request.formData();
-  const email = String(formData.get("email")) || "";
-  const name = String(formData.get("name")) || "";
-  const password = String(formData.get("password")) || "";
-  const repeatPassword = String(formData.get("repeatPassword")) || "";
-  const redirectUrl = String(formData.get("redirectTo")) || "/dashboard";
+  const email = String(formData.get("email")) || ""; // Get the email field
+  const name = String(formData.get("name")) || ""; // Get the name field
+  const password = String(formData.get("password")) || ""; // Get the password field
+  const repeatPassword = String(formData.get("repeatPassword")) || ""; // Get the repeat password field
+  const redirectUrl = String(formData.get("redirectTo")) || "/dashboard"; // Get the redirect URL or default to "/dashboard"
 
   try {
-    // Validate password
+    // Validate the password using the passwordCheck utility
     const validity = passwordCheck(password);
     if (!validity.isValid) {
       return {
-        error: validity.error,
+        error: validity.error, // Return an error if the password is invalid
       };
     }
 
-    // Save user info
+    // Save the user info (simulated with the saveUserInfo function)
     const saveSuccess = await saveUserInfo({ email, name, password });
     if (!saveSuccess) {
       return {
-        error: "Failed to save user info",
+        error: "Failed to save user info", // Return an error if saving fails
       };
     }
 
-    // Handle registration
+    // Handle user registration
     const token = await handleRegister({
       email,
       name,
@@ -66,55 +69,60 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     if (!token) {
       return {
-        error: "Failed to create user",
+        error: "Failed to create user", // Return an error if registration fails
       };
     }
 
-    // Create session
+    // Create a session for the user
     response = await createSession({ request, token, redirectUrl });
 
     if (!response) {
       return {
-        error: "Failed to create session",
+        error: "Failed to create session", // Return an error if session creation fails
       };
     }
   } catch (error) {
     return {
-      error: "Failed to create user",
+      error: "Failed to create user", // Return a generic error if something goes wrong
     };
   }
 
-  throw response;
+  throw response; // Throw the response to redirect the user
 };
 
+// The main RegisterPage component
 const RegisterPage = ({ actionData }: Route.ComponentProps) => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const redirectTo = params.get("redirectTo") || "/dashboard";
+  const location = useLocation(); // Get the current location (URL)
+  const params = new URLSearchParams(location.search); // Parse the query parameters
+  const redirectTo = params.get("redirectTo") || "/dashboard"; // Get the redirect URL or default to "/dashboard"
 
   return (
     <div className="register-container">
       <h1>Register Account</h1>
+      {/* Link to navigate to the login page */}
       <Link to="/login">Already have an account?</Link>
+      {/* Form for user registration */}
       <Form method="post">
+        {/* Hidden input to pass the redirect URL */}
         <input type="hidden" name="redirectTo" value={redirectTo} />
         <label>
           Email:
-          <input type="email" name="email" required />
+          <input type="email" name="email" required /> {/* Email input field */}
         </label>
         <label>
           Name:
-          <input type="text" name="name" required />
+          <input type="text" name="name" required /> {/* Name input field */}
         </label>
         <label>
           Password:
-          <input type="password" name="password" required />
+          <input type="password" name="password" required /> {/* Password input field */}
         </label>
         <label>
           Repeat Password:
-          <input type="password" name="repeatPassword" required />
+          <input type="password" name="repeatPassword" required /> {/* Repeat password input field */}
         </label>
-        <button type="submit">Register</button>
+        <button type="submit">Register</button> {/* Submit button */}
+        {/* Display an error message if there is one */}
         {actionData && actionData.error && (
           <div className="error">{actionData.error}</div>
         )}
@@ -123,4 +131,4 @@ const RegisterPage = ({ actionData }: Route.ComponentProps) => {
   );
 };
 
-export default RegisterPage;
+export default RegisterPage; // Exporting the RegisterPage component so it can be used in the app
