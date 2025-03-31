@@ -34,6 +34,9 @@ export const meta = ({}: Route.MetaArgs) => {
 export const action = async ({ request }: Route.ActionArgs) => {
   let response: Response;
 
+
+
+  //FINN HERE !!!!!!!!!!!!!!!!
   // Extract form data from the request
   const formData = await request.formData();
   const email = String(formData.get("email")) || ""; // Get the email field
