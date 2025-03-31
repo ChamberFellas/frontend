@@ -5,11 +5,15 @@ import { dateFormatter } from "~/utils/date";
 
 interface CompleteChoreProps {
   chore: CompleteChore;
-  flagChore: (choreID: string, flagged: boolean) => Promise<void>; // Updated to include the new flagged state
+  flagChore: (choreID: string, flagged: boolean) => Promise<void>;
 }
 
 const CompleteChoreComponent = ({ chore, flagChore }: CompleteChoreProps) => {
-  const timeCompletedAgo = -(Date.now() - chore.completedDate.valueOf()) / 1000;
+  // Ensure completedDate is a Date object
+  const completedDate = new Date(chore.completedDate);
+
+  // Calculate the time difference
+  const timeCompletedAgo = -(Date.now() - completedDate.getTime()) / 1000;
 
   const handleFlagToggle = async () => {
     await flagChore(chore.id, !chore.flagged); // Toggle the flagged state

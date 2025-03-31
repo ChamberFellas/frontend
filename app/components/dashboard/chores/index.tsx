@@ -26,10 +26,19 @@ const Chores = ({
       ...chore,
       completedDate: new Date(),
       flagged: false,
+      user: "Me", // Replace this with the actual user (e.g., from context or props)
     };
 
     setCompletedChores((prev) => [...prev, completedChore]);
     setIncompleteChores((prev) => prev.filter((chore) => chore.id !== id));
+  };
+
+  const flagChore = async (id: string, flagged: boolean): Promise<void> => {
+    setCompletedChores((prev) =>
+      prev.map((chore) =>
+        chore.id === id ? { ...chore, flagged } : chore
+      )
+    );
   };
 
   return (
@@ -56,7 +65,11 @@ const Chores = ({
       <span className="break" />
       <div className="chores-list">
         {completedChores.map((chore) => (
-          <CompleteChoreComponent key={chore.id} chore={chore} />
+          <CompleteChoreComponent
+            key={chore.id}
+            chore={chore}
+            flagChore={flagChore} // Pass the flagChore function
+          />
         ))}
       </div>
     </div>

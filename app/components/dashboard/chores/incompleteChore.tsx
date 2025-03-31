@@ -11,15 +11,14 @@ const IncompleteChoreComponent = ({
   chore,
   markComplete,
 }: IncompleteChoreProps) => {
-  // Causes console error as ssr.
-  const time_left = (chore.dueDate.valueOf() - Date.now()) / 1000;
+  const timeLeft = (chore.dueDate.getTime() - Date.now()) / 1000;
 
   return (
     <div className="chore-container">
       <p>{chore.name}</p>
 
       <div className="added-details-container">
-        <p>{time_left > 0 ? `${dateFormatter(time_left)} left` : "Overdue"}</p>
+        <p>{timeLeft > 0 ? `${dateFormatter(timeLeft)} left` : "Overdue"}</p>
         <span className="divider" />
         <button onClick={() => markComplete(chore.id)}>
           <TiTickOutline />
@@ -28,7 +27,5 @@ const IncompleteChoreComponent = ({
     </div>
   );
 };
-
-
 
 export default IncompleteChoreComponent;

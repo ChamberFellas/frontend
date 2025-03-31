@@ -26,17 +26,17 @@ const Chores = ({ loaderData }: Route.ComponentProps) => {
   const [incompleteChores, setIncompleteChores] = useState(loaderData.incompleteChores);
   const [completedChores, setCompletedChores] = useState(loaderData.completedChores);
 
-  // Function to mark a chore as complete
   const markComplete = async (id: string) => {
     const chore = incompleteChores.find((chore) => chore.id === id);
     if (!chore) return;
-
+  
     const completedChore = {
       ...chore,
       completedDate: new Date(),
       flagged: false, // Default flagged status
+      user: "Default User", // Replace this with the actual user (e.g., from context or props)
     };
-
+  
     setCompletedChores((prev) => [...prev, completedChore]);
     setIncompleteChores((prev) => prev.filter((chore) => chore.id !== id));
   };

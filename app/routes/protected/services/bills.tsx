@@ -20,8 +20,17 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   };
 };
 
+
 const Bills = ({ loaderData }: Route.ComponentProps) => {
   const { bills } = loaderData;
+
+  // Define the markPaid function
+  const markPaid = async (id: string): Promise<void> => {
+    const updatedBills = bills.map((bill) =>
+      bill.id === id ? { ...bill, paid: true } : bill
+    );
+    loaderData.bills = updatedBills; // Update the loaderData (mocking state update)
+  };
 
   return (
     <div className="bills-page">
@@ -36,7 +45,11 @@ const Bills = ({ loaderData }: Route.ComponentProps) => {
           {bills
             .filter((bill) => !bill.paid)
             .map((bill) => (
-              <UnpaidBillComponent key={bill.id} bill={bill} />
+              <UnpaidBillComponent
+                key={bill.id}
+                bill={bill}
+                markPaid={markPaid} // Pass the markPaid function
+              />
             ))}
         </div>
         <span className="break" />
