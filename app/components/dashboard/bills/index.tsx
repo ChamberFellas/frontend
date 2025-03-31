@@ -13,63 +13,60 @@ interface BillsProps {
 
 // The main Bills component
 const Bills = ({ bills: initialBills }: BillsProps) => {
-  // Using useState to manage the state of bills
-  // `initialBills` is the initial value for the state
   const [bills, setBills] = useState(initialBills);
 
-  // Function to mark a bill as paid
-  // It takes the ID of the bill to be marked as paid
   const markPaid = async (id: string): Promise<void> => {
-    // Updating the state by mapping through the bills
-    // If the bill's ID matches the given ID, update its `paid` property to true
     setBills((prevBills) =>
-      prevBills.map((bill) => (bill.id === id ? { ...bill, paid: true } : bill))
+      prevBills.map((bill) =>
+        bill.id === id
+          ? { ...bill, paid: true, paidDate: new Date() } // Add paidDate when marking as paid
+          : bill
+      )
     );
   };
+
+  // Get the top 3 unpaid bills with the closest due dates
+  const topUnpaidBills = bills
+    .filter((bill) => !bill.paid) // Filter unpaid bills
+    .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()) // Sort by due date (earliest first)
+    .slice(0, 2); // Take the top 2
+
+  // Get the top 2 paid bills with the most recent due dates
+  const topPaidBills = bills
+    .filter((bill) => bill.paid) // Filter paid bills
+    .sort((a, b) => new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime()) // Sort by due date (most recent first)
+    .slice(0, 1); // Take the top 1
 
   return (
     <div className="bills-container">
       {/* Header section */}
       <div className="bills-header">
-        {/* Link to navigate to the /bills page */}
         <Link to="/bills" className="bills-header-link">
           Bills
         </Link>
-        {/* Link to navigate to the /bills/add page for adding a new bill */}
         <Link to="/bills/add" className="add-button">
-          <IoMdAdd /> {/* Add icon */}
+          <IoMdAdd />
         </Link>
       </div>
 
-      {/* List of unpaid bills */}
+      {/* List of top 3 unpaid bills */}
       <div className="bills-list">
-        {bills
-          .filter((bill) => !bill.paid) // Filter bills to show only unpaid ones
-          .map((bill) => (
-            <UnpaidBillComponent
-              key={bill.id} // Unique key for each bill (required by React)
-              bill={bill} // Passing the bill object as a prop
-              markPaid={markPaid} // Passing the markPaid function as a prop
-            />
-          ))}
+        {topUnpaidBills.map((bill) => (
+          <UnpaidBillComponent key={bill.id} bill={bill} markPaid={markPaid} />
+        ))}
       </div>
 
       {/* Divider */}
       <span className="break" />
 
-      {/* List of paid bills */}
+      {/* List of top 2 paid bills */}
       <div className="bills-list">
-        {bills
-          .filter((bill) => bill.paid) // Filter bills to show only paid ones
-          .map((bill) => (
-            <PaidBillComponent
-              key={bill.id} // Unique key for each bill (required by React)
-              bill={bill} // Passing the bill object as a prop
-            />
-          ))}
+        {topPaidBills.map((bill) => (
+          <PaidBillComponent key={bill.id} bill={bill} />
+        ))}
       </div>
     </div>
   );
 };
 
-export default Bills; // Exporting the Bills component so it can be used in other parts of the app
+export default Bills;

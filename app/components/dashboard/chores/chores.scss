@@ -6,6 +6,10 @@
   padding: 1rem;
   border-radius: 5px;
   max-height: 15rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   overflow-y: scroll;
   scrollbar-width: none;
@@ -49,7 +53,7 @@
   }
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: rgb(72, 129, 178);
   }
 }
 
@@ -99,4 +103,5 @@ button {
   background: none;
   border: none;
   padding: 0;
+  color: rgb(72, 129, 178);
 }
