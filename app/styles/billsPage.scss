@@ -26,6 +26,17 @@
         transform: scale(1.1);
       }
     }
+    .pink-tick-icon {
+      color: pink; /* Pink color for the tick icon */
+      font-size: 1.5rem; /* Adjust the size of the tick icon */
+      margin-left: 0.5rem; /* Add spacing between the icon and text */
+      cursor: pointer; /* Make the icon clickable */
+      transition: transform 0.2s ease;
+    
+      &:hover {
+        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+      }
+    }
 
     .bills-list {
       margin-top: 1.5rem;

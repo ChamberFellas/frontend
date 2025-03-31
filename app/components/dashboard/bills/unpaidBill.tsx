@@ -21,14 +21,16 @@ const UnpaidBillComponent = ({ bill, markPaid }: UnpaidBillProps) => {
       {/* Display additional details about the bill */}
       <div className="added-details-container">
         {/* Display the amount and recipient of the bill */}
-        <p> £{bill.amount} to {bill.recipient}</p>
+        <p>£{bill.amount} to {bill.recipient}</p>
         {/* Display the formatted time difference using the dateFormatter utility */}
-        <p> - {dateFormatter(diff)}</p>
+        <p>- {dateFormatter(diff)}</p>
         <span className="divider" />
-        {/* Button to mark the bill as paid */}
-        <button onClick={() => markPaid(bill.id)}>
-          <FaRegMoneyBillAlt /> {/* Icon for marking the bill as paid */}
-        </button>
+        {/* Conditionally render the button only if recipient is not "Me" */}
+        {bill.recipient !== "Me" && (
+          <button onClick={() => markPaid(bill.id)}>
+            <FaRegMoneyBillAlt /> {/* Icon for marking the bill as paid */}
+          </button>
+        )}
       </div>
     </div>
   );
