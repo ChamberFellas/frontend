@@ -109,14 +109,6 @@ const AddChorePage = () => {
             required // Mandatory field
           />
         </div>
-        <div>
-          <label htmlFor="description">Description (Optional):</label>
-          <textarea
-            id="description"
-            value={description} // Controlled input
-            onChange={(e) => setDescription(e.target.value)} // Update state
-          />
-        </div>
         <button type="submit">Add Chore</button> {/* Submit button */}
       </form>
     </div>
