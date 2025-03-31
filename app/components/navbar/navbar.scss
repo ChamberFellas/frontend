@@ -84,9 +84,10 @@ nav {
 
 .navbar-title {
   flex: none; /* Remove the flex behavior to allow manual positioning */
-  margin-left: 2rem; /* Push the title to the right */
+  margin-left: 3rem; /* Push the title to the right */
   text-align: left; /* Optional: Align the text to the left */
   font-size: 1.5rem;
+  margin-top: -0.2rem;
   font-weight: bold;
   color: #333;
 }
@@ -95,14 +96,13 @@ nav {
   position: relative; /* Ensure it stays within the navbar */
   font-size: 2rem; /* Increase the size of the icon */
   margin-right: 1rem; /* Add spacing from the right edge */
-  margin-left: auto; /* Push it closer to the center */
+  margin-top: -1.5rem;
   cursor: pointer; /* Add a pointer cursor for interactivity */
   display: flex;
-  align-items: center;
-  justify-content: center;
 
   a, svg {
     font-size: inherit; /* Ensure the icon inherits the size */
   }
 }
+
 }
