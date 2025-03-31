@@ -42,7 +42,7 @@ const Chores = ({ loaderData }: Route.ComponentProps) => {
       ...chore, // Copy all properties from the incomplete chore
       completedDate: new Date(), // Add the current date as the completed date
       flagged: false, // Default flagged status
-      user: "Default User", // Replace this with the actual user (e.g., from context or props)
+      user: "Me", // Replace this with the actual user (e.g., from context or props)
     };
 
     // Update the state: Add the chore to the completed chores list

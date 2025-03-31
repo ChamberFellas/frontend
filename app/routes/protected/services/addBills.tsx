@@ -116,14 +116,6 @@ const AddBillPage = () => {
             <option value="Charlie">Charlie</option>
           </select>
         </div>
-        <div>
-          <label htmlFor="description">Description (Optional):</label>
-          <textarea
-            id="description"
-            value={description} // Controlled input
-            onChange={(e) => setDescription(e.target.value)} // Update state
-          />
-        </div>
         <button type="submit">Add Bill</button> {/* Submit button */}
       </form>
     </div>
