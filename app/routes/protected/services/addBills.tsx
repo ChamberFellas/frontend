@@ -7,8 +7,7 @@ const AddBillPage = () => {
   const [amount, setAmount] = useState(""); // Amount field for the bill
   const [dueDate, setDueDate] = useState("");
   const [description, setDescription] = useState("");
-  const [intervalValue, setIntervalValue] = useState(""); // Time interval value
-  const [intervalUnit, setIntervalUnit] = useState("Month(s)"); // Default interval unit
+  const [intervalUnit, setIntervalUnit] = useState("Monthly"); // Default interval unit
   const [housemates, setHousemates] = useState<string[]>([]); // Multi-select for housemates
   const navigate = useNavigate();
 
@@ -22,7 +21,7 @@ const AddBillPage = () => {
       amount: parseFloat(amount), // Convert amount to a number
       dueDate: new Date(dueDate),
       description,
-      interval: `${intervalValue} ${intervalUnit}`,
+      interval: intervalUnit,
       housemates,
     };
 
@@ -82,26 +81,17 @@ const AddBillPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="intervalValue">How Often Repeats:</label>
-          <input
-            id="intervalValue"
-            type="number"
-            value={intervalValue}
-            onChange={(e) => setIntervalValue(e.target.value)}
-            required
-            min="1" // Ensure only positive integers
-            step="1" // Ensure only whole numbers
-          />
+          <label htmlFor="intervalUnit">How Often Repeats:</label>
           <select
             id="intervalUnit"
             value={intervalUnit}
             onChange={(e) => setIntervalUnit(e.target.value)}
             required
           >
-            <option value="Day(s)">Day(s)</option>
-            <option value="Week(s)">Week(s)</option>
-            <option value="Month(s)">Month(s)</option>
-            <option value="Year(s)">Year(s)</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Biweekly">Biweekly</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
           </select>
         </div>
         <div>
