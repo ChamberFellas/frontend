@@ -29,10 +29,12 @@ const Bills = ({ loaderData }: Route.ComponentProps) => {
   // Function to mark a bill as paid
   // It takes the ID of the bill to be marked as paid
   const markPaid = async (id: string): Promise<void> => {
-    // Create a new array of bills with the updated "paid" status
-    const updatedBills = bills.map((bill) =>
-      bill.id === id ? { ...bill, paid: true } : bill
-    );
+    const updatedBills = bills
+      .map((bill) =>
+        bill.id === id ? { ...bill, paid: true } : bill // Mark the bill as paid
+      )
+      .filter((bill) => !(bill.id === id && bill.recipient === "Me" && bill.paid)); // Remove the bill if it's paid and the recipient is "Me"
+  
     loaderData.bills = updatedBills; // Update the loaderData (mocking state update)
   };
 
@@ -60,17 +62,18 @@ const Bills = ({ loaderData }: Route.ComponentProps) => {
         </div>
         <span className="break" /> {/* Divider between unpaid and paid bills */}
         <div className="bills-list">
-          <h2>Paid Bills</h2>
-          {/* Filter and display paid bills */}
-          {bills
-            .filter((bill) => bill.paid) // Only show bills that are paid
-            .map((bill) => (
-              <PaidBillComponent
-                key={bill.id} // Unique key for each bill (required by React)
-                bill={bill} // Passing the bill object as a prop
-              />
-            ))}
-        </div>
+        <h2>Paid Bills</h2>
+        {/* Filter and display paid bills */}
+        {bills  
+          .filter((bill) => bill.paid) // Only show bills that are paid
+          .map((bill) => (
+            <PaidBillComponent
+              key={bill.id} // Unique key for each bill (required by React)
+              bill={bill} // Passing the bill object as a prop
+              markPaid={markPaid} // Passing the markPaid function as a prop
+            />
+          ))}
+      </div>
       </div>
     </div>
   );

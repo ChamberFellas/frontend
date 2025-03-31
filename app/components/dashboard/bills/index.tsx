@@ -61,10 +61,10 @@ const Bills = ({ bills: initialBills }: BillsProps) => {
 
       {/* List of top 2 paid bills */}
       <div className="bills-list">
-        {topPaidBills.map((bill) => (
-          <PaidBillComponent key={bill.id} bill={bill} />
-        ))}
-      </div>
+      {topPaidBills.map((bill) => (
+        <PaidBillComponent key={bill.id} bill={bill} markPaid={markPaid} />
+  ))}
+</div>
     </div>
   );
 };
