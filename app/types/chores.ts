@@ -5,11 +5,12 @@ export interface IncompleteChore {
   dueDate: Date;
 }
 
+
 export interface CompleteChore {
   id: string;
   name: string;
   description: string;
   completedDate: Date;
   flagged: boolean;
-  user: string;
+  user: string; // Ensure this property is always present
 }

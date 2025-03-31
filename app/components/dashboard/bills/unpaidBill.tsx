@@ -15,11 +15,8 @@ const UnpaidBillComponent = ({ bill, markPaid }: UnpaidBillProps) => {
       <p>{bill.name}</p>
 
       <div className="added-details-container">
-        <p>
-          £{bill.amount} to {bill.recipient}
-        </p>
+        <p> £{bill.amount} to {bill.recipient}</p>
         <p> - {dateFormatter(diff)}</p>
-
         <span className="divider" />
         <button onClick={() => markPaid(bill.id)}>
           <FaRegMoneyBillAlt />

@@ -6,13 +6,13 @@ const incomplete_chores: IncompleteChore[] = [
     id: "1",
     name: "Clean kitchen",
     description: "Thorougly clean the kitchen",
-    dueDate: new Date("2025-03-30"),
+    dueDate: new Date("2025-04-03"),
   },
   {
     id: "2",
     name: "Wash dishes",
     description: "Wash all the dishes",
-    dueDate: new Date("2025-03-31"),
+    dueDate: new Date("2025-04-05"),
   },
 ];
 
@@ -22,7 +22,7 @@ const complete_chores: CompleteChore[] = [
     name: "Clean bathroom",
     description: "Thorougly clean the bathroom",
     user: "Bob",
-    completedDate: new Date("2025-03-30"),
+    completedDate: new Date("2025-02-30"), 
     flagged: false,
   },
   {
@@ -30,7 +30,7 @@ const complete_chores: CompleteChore[] = [
     name: "Vacuum living room",
     description: "Vacuum the living room",
     user: "Alice",
-    completedDate: new Date("2025-03-31"),
+    completedDate: new Date("2025-03-31"), 
     flagged: true,
   },
 ];
