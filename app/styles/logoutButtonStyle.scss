@@ -1,30 +1,32 @@
 .logout-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: #e0969d; /* Red color for logout */
-    text-align: center;
-    text-decoration: none;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-  
-    &:hover {
-      background-color: #c82333; /* Darker red on hover */
-      transform: scale(1.05);
-    }
-  
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 4px rgba(220, 53, 69, 0.5); /* Red focus outline */
-    }
-  
-    &:active {
-      background-color: #a71d2a; /* Even darker red on click */
-      transform: scale(0.95);
-    }
+  display: block; /* Change to block to allow centering */
+  margin: 0 auto; /* Center the button horizontally */
+  padding: 0.5rem 1rem; /* Adjust padding to make it less wide */
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  max-width: 50%; /* Limit the width */
+  color: white;
+  background-color: #e0969d; /* Red color for logout */
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+
+  &:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
   }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(220, 53, 69, 0.5); /* Red focus outline */
+  }
+
+  &:active {
+    background-color: #a71d2a; /* Even darker red on click */
+    transform: scale(0.95); /* Slightly shrink on click */
+  }
+}
