@@ -18,13 +18,13 @@ form {
   
       &:focus {
         outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+        border-color: rgb(146, 186, 221);;
+        box-shadow: 0 0 4px rgb(72, 129, 178);
       }
     }
   
     button {
-      background-color: #007bff;
+      background-color: rgb(146, 186, 221);;
       color: white;
       padding: 0.5rem 1rem;
       font-size: 1rem;
