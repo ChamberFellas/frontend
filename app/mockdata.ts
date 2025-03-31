@@ -52,6 +52,8 @@ const bills: Bill[] = [
     paid: false,
     recipient: "Jane",
   },
+
+  
 ];
 
 export const mockdata = {
