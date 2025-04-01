@@ -2,27 +2,9 @@ import "./../../styles/register-style.scss"; // Importing the SCSS file for styl
 import { Form, Link } from "react-router"; // Importing Form and Link components from react-router
 import type { Route } from "./+types/register"; // Importing the Route type for TypeScript type checking
 import { createSession } from "~/utils/auth/session"; // Importing a utility function to create a session
-import handleRegister from "~/utils/auth/register"; // Importing a utility function to handle user registration
 import { useLocation } from "react-router"; // Importing useLocation to access the current URL
 import { passwordCheck } from "~/utils/auth/password"; // Importing a utility function to validate passwords
-import {registerUser} from "./connect_to_usersV2"
-
-
-// Placeholder function to simulate saving user info
-const saveUserInfo = async (userInfo: {
-  email: string;
-  name: string;
-  password: string;
-}): Promise<boolean> => {
-  try {
-    console.log("Saving user info:", userInfo); // Log the user info for debugging
-    // Simulate success
-    return true;
-  } catch (error) {
-    console.error("Failed to save user info:", error); // Log any errors
-    return false;
-  }
-};
+import { registerUser } from "./connect_to_usersV2"; // Importing the registerUser function
 
 // Metadata for the page (used for SEO and browser tab titles)
 export const meta = ({}: Route.MetaArgs) => {
@@ -34,12 +16,6 @@ export const meta = ({}: Route.MetaArgs) => {
 
 // Action function to handle form submission
 export const action = async ({ request }: Route.ActionArgs) => {
-  let response: Response;
-
-
-
-  //FINN HERE !!!!!!!!!!!!!!!!
-  // Extract form data from the request
   const formData = await request.formData();
   const email = String(formData.get("email")) || ""; // Get the email field
   const name = String(formData.get("name")) || ""; // Get the name field
@@ -49,51 +25,48 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   try {
     // Validate the password using the passwordCheck utility
-    const validity = passwordCheck(password);
-    if (!validity.isValid) {
+    // const validity =   (password);
+    // if (!validity.isValid) {
+    //   return {
+    //     error: validity.error, // Return an error if the password is invalid
+    //   };
+    // }
+
+    // Ensure passwords match
+    if (password !== repeatPassword) {
       return {
-        error: validity.error, // Return an error if the password is invalid
+        error: "Passwords do not match.",
       };
     }
 
-    // Save the user info (simulated with the saveUserInfo function)
-    const saveSuccess = await saveUserInfo({ email, name, password });
-    if (!saveSuccess) {
-      return {
-        error: "Failed to save user info", // Return an error if saving fails
-      };
-    }
-    registerUser(email, password, name)
-//CALLS FINNS THING
-    // Handle user registration
-    const token = await handleRegister({
-      email,
-      name,
-      password,
-      repeatPassword,
-    });
+    // Call the registerUser function
+    const result = await registerUser(email, password, name);
 
-    if (!token) {
+    if (!result) {
       return {
-        error: "Failed to create user", // Return an error if registration fails
+        error: "Failed to register user. Please try again later.",
       };
     }
 
-    // Create a session for the user
-    response = await createSession({ request, token, redirectUrl });
+    // Simulate creating a session for the user
+    const token = "mockToken"; // Replace with actual token if returned by the API
+    const response = await createSession({ request, token, redirectUrl });
 
     if (!response) {
       return {
-        error: "Failed to create session", // Return an error if session creation fails
+        error: "Failed to create session. Please try again later.",
       };
     }
-  } catch (error) {
+
+    // Redirect the user to the dashboard
+    throw response;
+  } catch (error: any) {
+    // Handle unexpected errors
+    console.error("Unexpected error during registration:", error);
     return {
-      error: "Failed to create user", // Return a generic error if something goes wrong
+      error: "An unexpected error occurred. Please try again later.",
     };
   }
-
-  throw response; // Throw the response to redirect the user
 };
 
 // The main RegisterPage component

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-const axios = require('axios');
-const crypto = require('crypto');
+import axios from 'axios';
+import crypto from 'crypto';
 
 async function registerUser(email, password, username) {
     const hashedPassword = crypto.createHash('sha256').update(password + email).digest('hex');
@@ -39,7 +39,7 @@ async function loginUser(email, password) {
 }
 
 // Export functions for TypeScript usage
-module.exports = { registerUser, loginUser };
+export { registerUser, loginUser };
 
 
 //registerUser("testA","testB","testC")
