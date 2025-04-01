@@ -1,6 +1,8 @@
 import { useState } from "react"; // React hook to manage state
 import { useNavigate } from "react-router-dom"; // Hook to navigate between pages
 import "../../../styles/addBill.scss"; // Importing the SCSS file for styling
+import axios from 'axios';
+
 
 // This is the main component for adding a new bill
 const AddBillPage = () => {
@@ -17,6 +19,7 @@ const AddBillPage = () => {
   const handleAddBill = async (e: React.FormEvent) => {
     e.preventDefault(); // Stop the page from refreshing when the form is submitted
 
+
     // Create a new bill object with the form data
     const newBill = {
       id: Date.now().toString(), // Generate a unique ID using the current timestamp
@@ -26,8 +29,12 @@ const AddBillPage = () => {
       description, // Optional description
       interval: intervalUnit, // How often the bill repeats
       housemates, // List of housemates responsible
+
     };
 
+    const BILL_URL = "http:/" + process.env.AIP + ":3000/add-bill";
+
+    // axios.post(BILL_URL, 1, name, amount, "Unpaid", dueDate, interval, housemates)
     console.log("New bill added:", newBill); // Log the new bill to the console (for debugging)
 
     // Navigate back to the bills page after adding the bill
