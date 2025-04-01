@@ -4,8 +4,6 @@ import handleLogin from "~/utils/auth/login"; // Function to handle login logic
 import { createSession } from "~/utils/auth/session"; // Function to create a user session
 import { Link } from "react-router"; // Importing Link for navigation
 import "../../styles/login-style.scss"; // Importing the SCSS file for styling
-import {loginUser} from "./connect_to_usersV2"
-
 
 // Metadata for the page (used for SEO and browser tab titles)
 export const meta = ({}: Route.MetaArgs) => {
@@ -17,7 +15,10 @@ export const meta = ({}: Route.MetaArgs) => {
 
 // Action function to handle form submission
 export const action = async ({ request }: Route.ActionArgs) => {
-  let response: Response;
+  let response: Response; // Variable to store the response
+
+
+    //FINN HERE !!!!!!!!!!!!!!!!
 
   // Extracting form data from the request
   const formData = await request.formData();
@@ -26,27 +27,26 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const redirectUrl = "/dashboard"; // URL to redirect to after successful login
 
   try {
-    // Attempt to log in the user using the loginUser function
-    const [loginSuccessful, data] = await loginUser(email, password);
-
-    if (!loginSuccessful) {
+    // Attempt to log in the user
+    const token = await handleLogin({ email, password }); // Call the login function
+    if (!token) {
       throw new Error("Invalid login attempt"); // Throw an error if login fails
     }
 
     // Create a session for the user
-    response = await createSession({ request, token: data.token, redirectUrl });
+    response = await createSession({ request, token, redirectUrl });
     if (!response) {
       throw new Error("Failed to create session"); // Throw an error if session creation fails
     }
-
-    // Redirect the user to the dashboard after successful login
-    throw response;
   } catch (error) {
     // Return an error message if login or session creation fails
     return {
       error: "Invalid login attempt",
     };
   }
+
+  // Redirect the user to the dashboard after successful login
+  throw response;
 };
 
 // The main LoginPage component
