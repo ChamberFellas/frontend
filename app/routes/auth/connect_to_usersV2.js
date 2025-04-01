@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const axios = require('axios');
 const crypto = require('crypto');
 

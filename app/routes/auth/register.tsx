@@ -5,6 +5,8 @@ import { createSession } from "~/utils/auth/session"; // Importing a utility fun
 import handleRegister from "~/utils/auth/register"; // Importing a utility function to handle user registration
 import { useLocation } from "react-router"; // Importing useLocation to access the current URL
 import { passwordCheck } from "~/utils/auth/password"; // Importing a utility function to validate passwords
+import {registerUser} from "./connect_to_usersV2"
+
 
 // Placeholder function to simulate saving user info
 const saveUserInfo = async (userInfo: {
@@ -61,7 +63,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
         error: "Failed to save user info", // Return an error if saving fails
       };
     }
-
+    registerUser(email, password, name)
+//CALLS FINNS THING
     // Handle user registration
     const token = await handleRegister({
       email,
