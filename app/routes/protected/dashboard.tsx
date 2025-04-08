@@ -22,8 +22,8 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
   return (
     <>
       <Navbar leftIcon="BURGER" rightIcon="ACCOUNT" title="Dashboard" />
-      {/* <Notifications />   */}
-      {/* //DELETEEEE THIS ISF NEEDED */}
+      {/* <Notifications /> */}
+      {/* Remove this component if notifications are not needed */}
       <Chores
         incompleteChores={loaderData.incomplete_chores}
         completedChores={loaderData.complete_chores}
