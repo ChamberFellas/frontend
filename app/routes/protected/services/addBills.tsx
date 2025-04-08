@@ -1,10 +1,7 @@
-import { useState } from "react"; // React hook to manage state
+import { useState, useEffect } from "react"; // React hooks for state and lifecycle management
 import { useNavigate } from "react-router-dom"; // Hook to navigate between pages
 import "../../../styles/addBill.scss"; // Importing the SCSS file for styling
-import axios from 'axios';
 
-
-// This is the main component for adding a new bill
 const AddBillPage = () => {
   // State variables to keep track of the form inputs
   const [name, setName] = useState(""); // For the bill name
@@ -13,14 +10,19 @@ const AddBillPage = () => {
   const [description, setDescription] = useState(""); // Optional description for the bill
   const [intervalUnit, setIntervalUnit] = useState("Monthly"); // How often the bill repeats (default: Monthly)
   const [housemates, setHousemates] = useState<string[]>([]); // List of housemates responsible for the bill
+  const [bills, setBills] = useState<any[]>([]); // State to store the list of bills from local storage
   const navigate = useNavigate(); // Hook to navigate to another page
+
+  // Load bills from local storage when the component mounts
+  useEffect(() => {
+    const storedBills = JSON.parse(localStorage.getItem("bills") || "[]");
+    setBills(storedBills); // Set the bills state with the data from local storage
+  }, []);
 
   // This function runs when the form is submitted
   const handleAddBill = async (e: React.FormEvent) => {
-    e.preventDefault(); // Stop the page from refreshing when the form is submitted
+    e.preventDefault();
 
-
-    // Create a new bill object with the form data
     const newBill = {
       id: Date.now().toString(), // Generate a unique ID using the current timestamp
       name, // Bill name from the state
@@ -29,13 +31,17 @@ const AddBillPage = () => {
       description, // Optional description
       interval: intervalUnit, // How often the bill repeats
       housemates, // List of housemates responsible
-
     };
 
-    const BILL_URL = "http:/" + process.env.AIP + ":3000/add-bill";
+    // Add the new bill to the existing list of bills
+    const updatedBills = [...bills, newBill];
+    setBills(updatedBills); // Update the state with the new list of bills
 
-    // axios.post(BILL_URL, 1, name, amount, "Unpaid", dueDate, interval, housemates)
-    console.log("New bill added:", newBill); // Log the new bill to the console (for debugging)
+    // Save the updated list of bills to local storage
+    localStorage.setItem("bills", JSON.stringify(updatedBills));
+
+    console.log("New bill added:", newBill);
+    console.log("Updated bills in local storage:", updatedBills);
 
     // Navigate back to the bills page after adding the bill
     navigate("/bills");
