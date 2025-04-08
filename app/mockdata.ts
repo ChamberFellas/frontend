@@ -14,6 +14,13 @@ const incomplete_chores: IncompleteChore[] = [
     description: "Wash all the dishes",
     dueDate: new Date("2025-04-05"),
   },
+
+  {
+    id: "3",
+    name: "Test",
+    description: "Wash all the dishes",
+    dueDate: new Date("2025-04-01"),
+  },
 ];
 
 const complete_chores: CompleteChore[] = [
